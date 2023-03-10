@@ -1,17 +1,24 @@
 package com.springecommerce.ecommerce.model;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
 @Entity
+@Table(name = "detalles")
 public class DetalleOrden {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
     private String nombre;
     private String cantidad;
     private double precio;
     private double total;
+    @OneToOne
+    private Orden orden;
+    @OneToOne
+    private Producto producto;
 
     public DetalleOrden(){
 

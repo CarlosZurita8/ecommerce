@@ -1,18 +1,25 @@
 package com.springecommerce.ecommerce.model;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
 @Setter @Getter
 @Entity
+@Table(name = "ordenes")
 public class Orden {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
     private String numero;
     private Date fechaCreacion;
     private Date fechaRecibida;
     private double total;
+    @ManyToOne
+    private Usuario usuario;
+    @OneToOne(mappedBy = "orden")
+    private DetalleOrden detalle;
 
     public Orden(){
     }
